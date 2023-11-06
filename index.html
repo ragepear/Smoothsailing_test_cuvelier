@@ -9,25 +9,34 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 </head>
 <body>
-  <button id="openModal">Open Calendar</button>
+  <button id="openModal" class="primary-btn">Open Calendar</button>
   <div class="confirmation-message" id="confirmationMessage" style="display: none;"></div>
 
   <div class="modal" id="calendarModal">
     <div class="modal-content">
-      <span class="close-icon" id="closeModalButton">X</span>
+      <div class="close-icon" id="closeModalButton">
+        <i class="fas fa-times"></i>
+      </div>
       <div class="calendar">
         <h2>At which ministerraad would you like to plan this?</h2>
         <div class="month-selector" id="monthSelector">
-          <button id="prevMonth">Previous Month</button>
-          <h2 id="currentMonth">November 2023</h2>
-          <button id="nextMonth">Next Month</button>
+          <button class="link" id="prevMonth"><i class="fas fa-chevron-left"></i> Previous Month</button>
+          <h3 id="currentMonth">November 2023</h3>
+          <button class="link" id="nextMonth">Next Month <i class="fas fa-chevron-right"></i></button>          
         </div>
         <ul class="meeting-list" id="meetingList">
           <!-- Meeting items will be dynamically added here -->
         </ul>
-        <button id="confirmButton" style="display: none;">Confirm</button>
+        <button id="confirmButton" class="primary-btn" style="display: none;">Confirm</button>
+      </div>
+      <div class="confirmation-message-modal" id="confirmationMessageModal" style="display: none;">
+        <img src="images/circle_green_checkmark.svg.png" width="120px" class="confirmation-checkmark"></img>
+        <h2 class="confirmation-title">Ministeraad dossier attached</h2>
+        <p class="confirmation-description"></p>
+        <button class="confirmation-go-back" id="goBackButtonModal"><i class="fas fa-chevron-left"></i> Change the ministeraad date</button>
       </div>
     </div>
   </div>

@@ -24,12 +24,11 @@ body {
   position: relative;
   width: 50%;
   margin: auto;
-  height: 400px;
 }
 .close-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 22px;
+  right: 22px;
   font-size: 20px;
   cursor: pointer;
 }
@@ -39,8 +38,8 @@ body {
   width: 450px;
 }
 .month-selector {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   margin: 10px 0;
 }
 .meeting-list {
@@ -67,9 +66,55 @@ body {
 /* Styles for copy */
 h2{
   font-weight: 500;
+  margin-bottom: 42px;
+  line-height: 1.4em;
+}
+#currentMonth{
+  grid-area: 1 / 2 / 2 / 3;
+  margin: 0;
+  padding: 10px;
+  line-height: 100%;
 }
 /* Styles for buttons */
-#confirmButton{
+#openModal{
+  width: 150px;
+}
+#prevMonth i, #nextMonth i {
+  transition: transform 0.3s ease;
+}
+.fa-chevron-left{
+  margin-right: 6px;
+}
+.fa-chevron-right{
+  margin-left: 6px;
+}
+.link{
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  border-radius: 100px;
+  padding: 10px;
+  background-color: transparent; /* Initial background color */
+}
+.link:hover{
+  background-color: #ededed; /* Grey background color on hover */
+  border-radius: 100px;
+}
+#prevMonth{
+  grid-area: 1 / 1 / 2 / 2;
+  margin-right: auto;
+}
+#nextMonth{
+  grid-area: 1 / 3 / 2 / 4;
+  margin-left: auto;
+}
+.primary-btn{
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -90,7 +135,22 @@ h2{
   color: white;
   width: 100%;
 }
-#confirmButton:hover{
+.primary-btn:hover{
   color: #fff;
   background-color: rgb(4, 71, 165);
+}
+/* Confirmation message */
+#confirmationMessageModal{
+  text-align: center;
+  margin: 0 auto;
+  width: 450px;
+  flex-direction: column;
+  align-items: center;
+}
+.confirmation-title{
+  margin-bottom: 24px;
+}
+.confirmation-description{
+  margin-bottom: 24px;
+  line-height: 1.6em;
 }
