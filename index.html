@@ -13,14 +13,12 @@
 </head>
 <body>
   <button id="openModal" class="primary-btn">Open Calendar</button>
-  <div class="confirmation-message" id="confirmationMessage" style="display: none;"></div>
-
   <div class="modal" id="calendarModal">
     <div class="modal-content">
       <div class="close-icon" id="closeModalButton">
         <i class="fas fa-times"></i>
       </div>
-      <div class="calendar">
+      <div class="calendar" id="calendar-list">
         <h2>At which ministerraad would you like to plan this?</h2>
         <div class="month-selector" id="monthSelector">
           <button class="link" id="prevMonth"><i class="fas fa-chevron-left"></i> Previous Month</button>
@@ -36,7 +34,7 @@
         <img src="images/circle_green_checkmark.svg.png" width="120px" class="confirmation-checkmark"></img>
         <h2 class="confirmation-title">Ministeraad dossier attached</h2>
         <p class="confirmation-description"></p>
-        <button class="confirmation-go-back" id="goBackButtonModal"><i class="fas fa-chevron-left"></i> Change the ministeraad date</button>
+        <button class="confirmation-go-back link" id="goBackButtonModal"><i class="fas fa-chevron-left"></i> Change the ministeraad date</button>
       </div>
     </div>
   </div>

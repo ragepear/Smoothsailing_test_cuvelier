@@ -9,8 +9,12 @@ const monthSelector = document.getElementById("monthSelector");
 const prevMonthButton = document.getElementById("prevMonth");
 const nextMonthButton = document.getElementById("nextMonth");
 const meetingList = document.getElementById("meetingList");
+const calendarList = document.getElementById("calendar-list");
 let selectedMeeting = null;
-let currentDate = new Date(2023, 10); // November 2023 (JavaScript months are zero-based);
+let currentDate = new Date(2023, 10); // November 2023
+
+// Initialising of the meetings
+
 let meetingsByMonth = {
   "2023-11": [
     { meeting: "Ministerraad 1", date: "2023-11-10" },
@@ -32,29 +36,7 @@ let meetingsByMonth = {
   ],
 };
 
-openModalButton.addEventListener("click", () => {
-  modal.style.display = "block";
-  updateMeetingList();
-});
-
-closeModalButton.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-confirmButton.addEventListener("click", () => {
-  if (selectedMeeting) {
-    const confirmationMessageText = `You have successfully attached the dossier to : ${selectedMeeting.textContent}`;
-    confirmationMessage.textContent = confirmationMessageText;
-    confirmationMessageModal.style.display = "flex"; // Show the confirmation message
-    document.querySelector(".calendar").style.display = "none"; // Hide the calendar content
-  }
-});
-
-// Add an event listener to the "Go Back" button in the confirmation message
-document.getElementById("goBackButtonModal").addEventListener("click", () => {
-  confirmationMessageModal.style.display = "none"; // Hide the confirmation message
-  document.querySelector(".calendar").style.display = "block"; // Show the calendar content
-});
+// Open and close modal logic
 
 openModalButton.addEventListener("click", () => {
   modal.style.display = "block";
@@ -64,6 +46,8 @@ openModalButton.addEventListener("click", () => {
 closeModalButton.addEventListener("click", () => {
   modal.style.display = "none";
 });
+
+// Loading of the meetings
 
 function loadMeetingsForMonth(month) {
   const meetings = meetingsByMonth[month] || [];
@@ -77,6 +61,8 @@ function loadMeetingsForMonth(month) {
     meetingList.appendChild(meetingItem);
   });
 }
+
+// Adding previous button if not in the current month (all the meetings are planned in the future)
 
 function addPreviousMonthButton() {
   const prevMonthButtonExists = document.getElementById("prevMonth");
@@ -100,6 +86,8 @@ function removePreviousMonthButton() {
   }
 }
 
+// Select meeting behavior
+
 function selectMeeting(meetingItem) {
   if (selectedMeeting) {
     selectedMeeting.classList.remove("selected");
@@ -108,6 +96,8 @@ function selectMeeting(meetingItem) {
   selectedMeeting.classList.add("selected");
   confirmButton.style.display = "block";
 }
+
+// Display of the confirmation message
 
 confirmButton.addEventListener("click", () => {
   if (selectedMeeting) {
@@ -118,34 +108,25 @@ confirmButton.addEventListener("click", () => {
 
 function showConfirmationMessage(message) {
   // Hide the modal content
-  meetingList.style.display = "none";
-  prevMonthButton.style.display = "none";
-  nextMonthButton.style.display = "none";
-  confirmButton.style.display = "none";
+  calendarList.style.display = "none";
 
-  // Display the confirmation message and "Go Back" button
+  // Display the confirmation message
   confirmationMessageModal.style.display = "flex";
   const confirmationDescription = document.querySelector(".confirmation-description");
   confirmationDescription.textContent = message;
-  
-  // Add the "Go Back" button
-  const goBackButtonModal = document.getElementById("goBackButtonModal");
-  goBackButtonModal.style.display = "block";
-  goBackButtonModal.classList.add("link");
 
   // Define the behavior of the "Go Back" button
   goBackButtonModal.addEventListener("click", () => {
-    // Hide the confirmation message and "Go Back" button
-    confirmationMessageModal.style.display = "none";
-    goBackButtonModal.style.display = "none";
 
-    // Show the calendar content
-    meetingList.style.display = "block";
-    prevMonthButton.style.display = "block";
-    nextMonthButton.style.display = "block";
-    confirmButton.style.display = "block";
+  // Hide the confirmation message
+  confirmationMessageModal.style.display = "none";
+
+  // Show the calendar content
+  calendarList.style.display = "block";
   });
 }
+
+// Meetings list update
 
 function updateMeetingList() {
   const currentMonth = currentDate.getMonth();
@@ -153,7 +134,7 @@ function updateMeetingList() {
   const currentMonthString = `${currentYear}-${(currentMonth + 1).toString().padStart(2, "0")}`;
   const isCurrentMonth = currentMonthString === new Date().toISOString().substr(0, 7);
 
-  currentMonthDisplay.textContent = new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' });
+  currentMonthDisplay.textContent = new Date(currentYear, currentMonth).toLocaleString('en-US', { month: 'long' });
 
   if (isCurrentMonth) {
     removePreviousMonthButton();
@@ -172,6 +153,7 @@ nextMonthButton.addEventListener("click", () => {
 });
 
 // Close the modal when clicking outside the content area
+
 modal.addEventListener("click", (event) => {
   if (event.target === modal) {
     modal.style.display = "none";
