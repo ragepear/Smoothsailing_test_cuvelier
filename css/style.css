@@ -26,7 +26,7 @@ body {
   padding: 50px;
   text-align: center;
   position: relative;
-  width: 50%;
+  width: 30%;
   margin: auto;
 }
 .close-icon {
@@ -58,6 +58,7 @@ body {
 }
 .meeting-item.selected {
   background: #f0f0f0;
+  font-weight: 500;
 }
 .meeting-item:hover {
   background-color: #f0f0f0;
@@ -159,7 +160,7 @@ h2{
   align-items: center;
 }
 .confirmation-title{
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 .confirmation-description{
   margin-bottom: 24px;
